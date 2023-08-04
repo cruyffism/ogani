@@ -31,14 +31,13 @@ public class SecurityConfig {
 
         // 권한에 따라 허용하는 url 설정
         // /login, /signup 페이지는 모두 허용, 다른 페이지는 인증된 사용자만 허용
-        // http.csrf((csrf)->csrf.disable());
 
         // url에 접근 권한을 주는 부분 >> 즉, 권한에 따라 허용하는 url 설정
         http
                 .authorizeHttpRequests(
                         (authorizeHttpRequests) ->
                                 authorizeHttpRequests
-                                        .requestMatchers("/", "/static/css/**", "/static/fonts/**", "/static/img/**", "/static/js/**", "/static/sass/**", "/static/Source/**" ).permitAll()
+                                        .requestMatchers("/", "/static/**","/user/**" ).permitAll() // 이 경로들은 로그인 없이 접근 가능
                                         .requestMatchers("/admin/**").hasRole("ADMIN") // admin 관련 페이지는 admin 권한을 가진자에게만 접근 허용 하겠다.
                                         .anyRequest().authenticated() // 나머지 url은 로그인해야지만 접근 가능!
                 );
@@ -71,7 +70,7 @@ public class SecurityConfig {
     // 비밀번호 암호화
     // passwordEncoder라는 이름으로 비번 암호화 메소드 만들기,  passwordEncoder() 호출 시  BCryptPasswordEncoder 이게 리턴되면서 암호화 가능
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    public static PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
