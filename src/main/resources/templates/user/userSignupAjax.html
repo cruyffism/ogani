@@ -1,11 +1,11 @@
 <div class="row justify-content-center">
-    <div class="col-lg-8">
+    <div class="col-lg-12">
         <div class="modal-body">
             <!-- Project details-->
             <form th:action="@{/user/signup}" method="post" id="signUpForm" class="needs-validation" novalidate>
                 <input type="hidden" id="type" name="type" th:value="${type}">
                 <div class="mb-3 row">
-                    <label for="id" class="col-sm-4 col-form-label" style="color: black">아이디</label>
+                    <label for="id" class="col-sm-4 col-form-label">아이디</label>
                     <div class="col-sm-6">
                         <input type="text" class="form-control" id="id"
                                name="id" placeholder="Id" required/>
@@ -18,14 +18,14 @@
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="name" class="col-sm-4 col-form-label" style="color: black">이름</label>
+                    <label for="name" class="col-sm-4 col-form-label">이름</label>
                     <div class="col-sm-6">
                         <input type="text" class="form-control" id="name" name="name"
                                placeholder="Name" required/>
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="password" class="col-sm-4 col-form-label" style="color: black">비밀번호</label>
+                    <label for="password" class="col-sm-4 col-form-label">비밀번호</label>
                     <div class="col-sm-6">
                         <input type="password" class="form-control"
                                onkeyup="passwordCheck(this.value)" id="password"
@@ -34,7 +34,7 @@
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="passwordConfirm" class="col-sm-4 col-form-label" style="color: black">비밀번호 확인</label>
+                    <label for="passwordConfirm" class="col-sm-4 col-form-label">비밀번호 확인</label>
                     <div class="col-sm-6">
                         <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm"
                                onkeyup="passwordCheck(this.value)" placeholder="Password" required/>
@@ -44,14 +44,14 @@
                     <div id="password-error2" class="invalid-feedback">영문,숫자,특수문자를 조합한 8자리 이상을 입력하세요.</div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="birthday" class="col-sm-4 col-form-label" style="color: black">생년월일</label>
+                    <label for="birthday" class="col-sm-4 col-form-label">생년월일</label>
                     <div class="col-sm-6">
                         <input type="date" class="form-control" id="birthday" name="birthday"
                                placeholder="Birthday" required/>
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="phonenumber" class="col-sm-4 col-form-label" style="color: black">핸드폰 번호</label>
+                    <label for="phonenumber" class="col-sm-4 col-form-label">핸드폰 번호</label>
                     <div class="col-sm-6">
                         <input type="text" class="form-control" onkeyup="phoneCheck(this.value)"
                                id="phonenumber" name="phonenumber"
@@ -60,7 +60,7 @@
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="email" class="col-sm-4 col-form-label" style="color: black">이메일</label>
+                    <label for="email" class="col-sm-4 col-form-label">이메일</label>
                     <div class="col-sm-6">
                         <input type="email" class="form-control" id="email" name="email"
                                placeholder="email" required/>
@@ -72,10 +72,10 @@
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="address" class="col-sm-4 col-form-label" style="color: black">주소</label>
+                    <label for="address" class="col-sm-4 col-form-label">주소</label>
                     <div class="col-sm-6">
                         <input type="email" class="form-control" id="address" name="address"
-                               placeholder="adress" required/>
+                               placeholder="address" required/>
                     </div>
                 </div>
                 <div class="grid text-center" style="--bs-columns: 4; --bs-gap: 5rem;">
