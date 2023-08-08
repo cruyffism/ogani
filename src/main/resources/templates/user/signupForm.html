@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!--타임리프 문법 및 스프링 시큐리티 사용하기 위해 선언, 타임리프를 사용하는 이유는 백엔드 소스를 동적으로 연결하기 위해서-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragment/common :: head('ogani')">
+</head>
+<body>
+<!-- Page Preloder -->
+<div id="preloder" th:replace="fragment/common :: preloder">
+</div>
+
+<!-- Humberger Begin -->
+<div class="humberger__menu__overlay"></div>
+<div class="humberger__menu__wrapper" th:replace="fragment/common :: humberger">
+</div>
+<!-- Humberger End -->
+
+<!-- Header Section Begin -->
+<header class="header" th:replace="fragment/common :: header">
+</header>
+<!-- Header Section End -->
+
+<!--signupTab-->
+<section id="signupTab">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">회원가입</h2>
+        </div>
+        <ul class="nav nav-tabs nav-fill flex-column flex-sm-row" style="margin-bottom: 50px">
+            <li class="nav-item">
+                <a id="signupTab1" class="nav-link active" aria-current="page" th:onclick="signupAjax(1)">일반 회원</a>
+            </li>
+            <li class="nav-item">
+                <a id="signupTab2" class="nav-link" th:onclick="signupAjax(2)">관리자</a>
+            </li>
+        </ul>
+        <!-- signup.js와 연결되는 아이디! -->
+        <div  id="signupForm" class="row">
+        </div>
+    </div>
+</section>
+
+<!-- Footer Section Begin -->
+<footer class="footer spad" th:replace="fragment/common :: footer">
+</footer>
+<!-- Footer Section End -->
+
+<!-- Js Plugins -->
+<script src="/static/js/jquery-3.3.1.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/jquery.nice-select.min.js"></script>
+<script src="/static/js/jquery-ui.min.js"></script>
+<script src="/static/js/jquery.slicknav.js"></script>
+<script src="/static/js/mixitup.min.js"></script>
+<script src="/static/js/owl.carousel.min.js"></script>
+<script src="/static/js/main.js"></script>
+
+</body>
+
+</html>
