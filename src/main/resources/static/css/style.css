@@ -395,6 +395,7 @@ ol {
 
 .header__top__right__auth {
 	display: inline-block;
+	margin-right: 6px;
 }
 
 .header__top__right__auth a {
