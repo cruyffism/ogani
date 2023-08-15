@@ -1,4 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.minki.ogani.mapper.user.UserMapper">
+
+    <!--아이디 중복체크-->
+    <!--  <select id = 뒤에 내가 쓰고 싶은 메소드 이름을 적는다-->
+    <!-- parameterType은 #에 넘겨줄 변수의 타입을 의미! 즉 여기선 id가 스트링타입이니까(디비버에서 varchar 지정함) 이 타입에 맞게 넘김  -->
+    <!-- resultType은 select해서 나온 결과값의 타입을 의미한다. 여기서 가져오는 값이 변수명이 아닌 count여서 숫자로 나오니까 Integer -->
+    <!-- 회원가입창에서 신규회원이 쓴 id가 디비버에 user테이블에 저장된 다른 사람들의 id와 같은지 개수를 세서 체크하고 같으면 1 아니면 0 -->
+    <select id="idCheck" parameterType="String" resultType="Integer">
+        SELECT count(*)
+        FROM user
+        WHERE id = #{id}
+    </select>
+
+    <!--이메일 중복체크-->
+    <!--아이디 중복체크와 같은 원리-->
+    <select id="emailCheck" parameterType="String" resultType="Integer">
+        SELECT count(*)
+        FROM user
+        WHERE email = #{email}
+    </select>
+
+    <!--회원가입-->
+    <!--꿀팁: 웬만하면 select 빼고는 resultType 선언 안해도 됨! 왜냐면 다 기본값이 integer라서!-->
+    <!-- VALUES의 값을 into~ 에다가 넣는다! -->
+    <!-- 동적쿼리 -->
+    <insert id= "saveUser" parameterType="UserReqDto" useGeneratedKeys="true" keyColumn="user_id" keyProperty="userId">
+        <choose>
+            <when test="type == 1">
+                INSERT
+                INTO user(name, id, phonenumber, postcode, address, detail_address, extra_address, birthday, email,
+                password)
+                VALUES (#{name}, #{id}, #{phonenumber}, #{postcode}, #{address}, #{detailAddress}, #{extraAddress},
+                #{birthday}, #{email}, #{password})
+            </when>
+            <when test="type == 2">
+                INSERT
+                INTO user(name, id, phonenumber, email,password)
+                VALUES (#{name}, #{id}, #{phonenumber}, #{email}, #{password})
+            </when>
+        </choose>
+    </insert>
+
+    <!-- 사용자/관리자 가입 시 권한 추가-->
+    <insert id="saveRole" parameterType="UserRoleReqDto">
+    INSERT
+    INTO user_role(user_id, role_id)
+    VALUES (#{userId}, #{roleId})
+    </insert>
 </mapper>
+

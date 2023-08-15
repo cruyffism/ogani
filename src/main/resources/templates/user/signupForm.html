@@ -5,6 +5,7 @@
 <head th:replace="fragment/common :: head('ogani')">
 </head>
 <body>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <!-- Page Preloder -->
 <div id="preloder" th:replace="fragment/common :: preloder">
 </div>
@@ -40,6 +41,8 @@
         </ul>
         <!-- signup.js와 연결되는 아이디! -->
         <div  id="signupForm">
+
+        <!-- 이 안에 userSignupAjax.html 혹은 adminSignupAjax.html의 내용이 들어간다. -->
         </div>
     </div>
 </section>

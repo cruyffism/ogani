@@ -38,10 +38,10 @@
                     <div class="col-sm-6">
                         <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm"
                                onkeyup="passwordCheck(this.value)" placeholder="Password" required/>
+                        <div id="password-error" class="invalid-feedback">비밀번호가 일치하지 않습니다.</div>
+                        <div id="password-success" class="invalid-feedback">비밀번호가 일치합니다.</div>
+                        <div id="password-error2" class="invalid-feedback">영문,숫자,특수문자를 조합한 8자리 이상을 입력하세요.</div>
                     </div>
-                    <div id="password-error" class="invalid-feedback">비밀번호가 일치하지 않습니다.</div>
-                    <div id="password-success" class="invalid-feedback">비밀번호가 일치합니다.</div>
-                    <div id="password-error2" class="invalid-feedback">영문,숫자,특수문자를 조합한 8자리 이상을 입력하세요.</div>
                 </div>
                 <div class="mb-3 row">
                     <label for="phonenumber" class="col-sm-4 col-form-label">핸드폰 번호</label>
@@ -65,12 +65,12 @@
                     </div>
                 </div>
                 <div class="grid text-center" style="--bs-columns: 4; --bs-gap: 5rem;">
-                <button type="button" class="btn btn-outline-dark">가입
-                </button>
-                <button type="button" class="btn btn-outline-dark"
-                        onclick="location.href='/'">
-                    취소
-                </button>
+                    <button type="submit" class="btn btn-outline-dark">가입
+                    </button>
+                    <button type="button" class="btn btn-outline-dark"
+                            onclick="location.href='/'">
+                        취소
+                    </button>
                 </div>
             </form>
         </div>
