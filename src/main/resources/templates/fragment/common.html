@@ -60,7 +60,10 @@
                 <a href="#" th:text="|${#authentication.name}님|"><i class="fa fa-user"></i>환영합니다.</a>
             </div>
             <div class="header__top__right__auth">
-                <a href="/user/logout"><i class="fa fa-user-plus" aria-hidden="true"></i> Logout</a>
+                <form name="logout" th:action="@{/logout}" method="post">
+                    <a onclick="document.forms['logout'].submit();"><i class="fa fa-user-plus"
+                                                              aria-hidden="true"></i> Logout</a>
+                </form>
             </div>
         </div>
         <div sec:authorize="!isAuthenticated()">
@@ -139,7 +142,10 @@
                                 <a href="#" th:text="|${#authentication.name}님|"><i class="fa fa-user"></i>환영합니다.</a>
                             </div>
                             <div class="header__top__right__auth">
-                                <a href="/user/logout"><i class="fa fa-user-plus" aria-hidden="true"></i> Logout</a>
+                                <form name="logout" th:action="@{/logout}" method="post">
+                                    <a onclick="document.forms['logout'].submit();"><i class="fa fa-user-plus"
+                                                                              aria-hidden="true"></i> Logout</a>
+                                </form>
                             </div>
                         </div>
                         <div sec:authorize="!isAuthenticated()">
