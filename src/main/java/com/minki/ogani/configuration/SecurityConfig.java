@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -63,6 +64,9 @@ public class SecurityConfig {
                                 .invalidateHttpSession(true).deleteCookies("JSESSIONID") // 로그아웃 시 로그인 정보를 없앤다.
                                 .permitAll() // "/" >> 여기 경로로 로그인 안해도 접근 가능하다!
                 );
+
+        http.sessionManagement((x)->
+                        x.sessionCreationPolicy(SessionCreationPolicy.ALWAYS));
 
         return http.build(); // 권한 허용 로그인 로그아웃 >> 이 3가지 설정을 저장한다.
     }

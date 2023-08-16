@@ -1,78 +1,76 @@
 <div class="row justify-content-center">
     <div class="col-lg-12">
-        <div class="modal-body">
-            <!-- Project details-->
-            <form th:action="@{/user/signup}" method="post" id="signUpForm" class="needs-validation" novalidate>
-                <input type="hidden" id="type" name="type" th:value="${type}">
-                <div class="mb-3 row">
-                    <label for="id" class="col-sm-4 col-form-label">아이디</label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" id="id"
-                               name="id" placeholder="Id" required/>
-                    </div>
-                    <div class="col-sm-2">
-                        <button type="button" class="btn btn-outline-dark btn-sm" id="idCheck"
-                                onclick="idCheckAjax()">
-                            중복체크
-                        </button>
-                    </div>
+        <!-- Project details-->
+        <form th:action="@{/user/signup}" method="post" id="signUpForm" class="needs-validation" novalidate>
+            <input type="hidden" id="type" name="type" th:value="${type}">
+            <div class="mb-3 row">
+                <label for="id" class="col-sm-4 col-form-label">아이디</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="id"
+                           name="id" placeholder="Id" required/>
                 </div>
-                <div class="mb-3 row">
-                    <label for="name" class="col-sm-4 col-form-label">이름</label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" id="name" name="name"
-                               placeholder="Name" required/>
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label for="password" class="col-sm-4 col-form-label">비밀번호</label>
-                    <div class="col-sm-6">
-                        <input type="password" class="form-control"
-                               onkeyup="passwordCheck(this.value)" id="password"
-                               name="password" placeholder="Password" required/>
-                        <!--&lt;!&ndash;onkeyup을 통해  signup.js 에 있는 passwordCheck function을 호출하여 this.value값을 넘겨주고 이것이 에러인지 검사 후 비번조합이 에러인 순간 에러문구 보여주라고 하고 아래 영문 ~ 조합 8자리 입력 문구가 뜬다 &ndash;&gt;-->
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label for="passwordConfirm" class="col-sm-4 col-form-label">비밀번호 확인</label>
-                    <div class="col-sm-6">
-                        <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm"
-                               onkeyup="passwordCheck(this.value)" placeholder="Password" required/>
-                        <div id="password-error" class="invalid-feedback">비밀번호가 일치하지 않습니다.</div>
-                        <div id="password-success" class="invalid-feedback">비밀번호가 일치합니다.</div>
-                        <div id="password-error2" class="invalid-feedback">영문,숫자,특수문자를 조합한 8자리 이상을 입력하세요.</div>
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label for="phonenumber" class="col-sm-4 col-form-label">핸드폰 번호</label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" onkeyup="phoneCheck(this.value)"
-                               id="phonenumber" name="phonenumber"
-                               placeholder="Phone" required/>
-                        <div id="phone-error" class="invalid-feedback">숫자만 입력하세요.</div>
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label for="email" class="col-sm-4 col-form-label">이메일</label>
-                    <div class="col-sm-6">
-                        <input type="email" class="form-control" id="email" name="email"
-                               placeholder="email" required/>
-                    </div>
-                    <div class="col-sm-2">
-                        <button type="button" class="btn btn-outline-dark btn-sm" id="emailCheck"
-                                onclick="emailCheckAjax()">중복체크
-                        </button>
-                    </div>
-                </div>
-                <div class="grid text-center" style="--bs-columns: 4; --bs-gap: 5rem;">
-                    <button type="submit" class="btn btn-outline-dark">가입
-                    </button>
-                    <button type="button" class="btn btn-outline-dark"
-                            onclick="location.href='/'">
-                        취소
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-outline-dark btn-sm" id="idCheck"
+                            onclick="idCheckAjax()">
+                        중복체크
                     </button>
                 </div>
-            </form>
-        </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="name" class="col-sm-4 col-form-label">이름</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="name" name="name"
+                           placeholder="Name" required/>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="password" class="col-sm-4 col-form-label">비밀번호</label>
+                <div class="col-sm-6">
+                    <input type="password" class="form-control"
+                           onkeyup="passwordCheck(this.value)" id="password"
+                           name="password" placeholder="Password" required/>
+                    <!--&lt;!&ndash;onkeyup을 통해  signup.js 에 있는 passwordCheck function을 호출하여 this.value값을 넘겨주고 이것이 에러인지 검사 후 비번조합이 에러인 순간 에러문구 보여주라고 하고 아래 영문 ~ 조합 8자리 입력 문구가 뜬다 &ndash;&gt;-->
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="passwordConfirm" class="col-sm-4 col-form-label">비밀번호 확인</label>
+                <div class="col-sm-6">
+                    <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm"
+                           onkeyup="passwordCheck(this.value)" placeholder="Password" required/>
+                    <div id="password-error" class="invalid-feedback">비밀번호가 일치하지 않습니다.</div>
+                    <div id="password-success" class="invalid-feedback">비밀번호가 일치합니다.</div>
+                    <div id="password-error2" class="invalid-feedback">영문,숫자,특수문자를 조합한 8자리 이상을 입력하세요.</div>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="phonenumber" class="col-sm-4 col-form-label">핸드폰 번호</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" onkeyup="phoneCheck(this.value)"
+                           id="phonenumber" name="phonenumber"
+                           placeholder="Phone" required/>
+                    <div id="phone-error" class="invalid-feedback">숫자만 입력하세요.</div>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="email" class="col-sm-4 col-form-label">이메일</label>
+                <div class="col-sm-6">
+                    <input type="email" class="form-control" id="email" name="email"
+                           placeholder="email" required/>
+                </div>
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-outline-dark btn-sm" id="emailCheck"
+                            onclick="emailCheckAjax()">중복체크
+                    </button>
+                </div>
+            </div>
+            <div class="grid text-center" style="--bs-columns: 4; --bs-gap: 5rem;">
+                <button type="submit" class="btn btn-outline-dark">가입
+                </button>
+                <button type="button" class="btn btn-outline-dark"
+                        onclick="location.href='/'">
+                    취소
+                </button>
+            </div>
+        </form>
     </div>
 </div>

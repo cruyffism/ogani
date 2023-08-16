@@ -62,7 +62,7 @@ public class UserController {
             PrintWriter writer = response.getWriter();
             writer.println("<script>alert('회원가입되었습니다.');</script>");
             writer.flush();
-            return "user/login";
+            return "user/loginForm";
         } else {
             response.setContentType("text/html; charset=UTF-8");
             PrintWriter writer = response.getWriter();
@@ -72,15 +72,14 @@ public class UserController {
         }
     }
 
-    ///로그인
+    // 로그인
     @GetMapping("/login")
     public String login(@RequestParam(value = "error", required = false) String error,
                         @RequestParam(value = "exception", required = false) String exception, Model model){
         model.addAttribute("error", error);
         model.addAttribute("exception", exception);
-        return "user/login";
+        return "user/loginForm";
     }
-
 
 
 
