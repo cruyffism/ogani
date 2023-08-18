@@ -1,6 +1,7 @@
 package com.minki.ogani.controller.user;
 
 import com.minki.ogani.dto.user.UserReqDto;
+import com.minki.ogani.dto.user.UserResDto;
 import com.minki.ogani.service.user.UserService;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,6 +82,26 @@ public class UserController {
         return "user/loginForm";
     }
 
+    // 아이디 찾기 폼
+    @GetMapping("/findIdForm")
+    public String findIdForm() {
+        return "user/findIdForm";
+    }
+
+    //조건(이름/전번/비번)에 맞는 아이디 출력
+    @PostMapping("/findId")
+    public String findId(Model model, @ModelAttribute UserReqDto userReqDto, HttpServletResponse response) throws IOException {
+        UserResDto userResDto = userService.findId(userReqDto);
+        if(userResDto == null) {
+            response.setContentType("text/html; charset=UTF-8");
+            PrintWriter writer = response.getWriter();
+            writer.println("<script>alert('해당정보가 존재하지 않습니다.');</script>");
+            writer.flush();
+            return "user/findIdForm";
+        }
+        model.addAttribute("id", userResDto);
+        return "user/findId";
+    }
 
 
 }

@@ -1,6 +1,7 @@
 package com.minki.ogani.mapper.user;
 
 import com.minki.ogani.dto.user.UserReqDto;
+import com.minki.ogani.dto.user.UserResDto;
 import com.minki.ogani.dto.user.UserRoleReqDto;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -19,4 +20,7 @@ public interface UserMapper {
 
     // 사용자/관리자 가입 시 권한 추가
     Integer saveRole(UserRoleReqDto userRoleReqDto);
+
+    //조건(이름/전번/비번)에 맞는 아이디 출력
+    UserResDto findId(UserReqDto userReqDto);
 }

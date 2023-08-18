@@ -1,6 +1,7 @@
 package com.minki.ogani.service.user;
 
 import com.minki.ogani.dto.user.UserReqDto;
+import com.minki.ogani.dto.user.UserResDto;
 import com.minki.ogani.dto.user.UserRoleReqDto;
 import com.minki.ogani.mapper.user.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,12 @@ public class UserService {
         userRoleReqDto.setRoleId(userReqDto.getType());
         return userMapper.saveRole(userRoleReqDto);
 
+    }
+
+    //조건(이름/전번/비번)에 맞는 아이디 출력
+    public UserResDto findId(UserReqDto userReqDto) {
+
+        return userMapper.findId(userReqDto);
     }
 
 
