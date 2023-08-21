@@ -22,40 +22,33 @@
 </section>
 
 <!--login-->
-<section id="findIdForm">
-    <!-- 박스 크기 조절    -->
+<section id="login">
     <div class="container" style="width: 35%">
         <div class="text-center" style="margin: 30px 0px">
-            <h2 class="section-heading text-uppercase">아이디 찾기</h2>
+            <h2 class="section-heading text-uppercase">비밀번호 찾기</h2>
         </div>
         <div class="row justify-content-center">
             <div class="col-lg-12">
                 <!-- Project details-->
-                <form th:action="@{/user/findId}" method="post" id="findId" class="needs-validation" novalidate>
+                <form th:action="@{/user/findPw}" method="post" id="findPw" class="needs-validation" novalidate>
                     <div class="mb-3 row">
-                        <label for="name" class="col-sm-4 col-form-label">이름</label>
+                        <label for="id" class="col-sm-4 col-form-label">아이디</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="name"
-                                   required/>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="phonenumber" class="col-sm-4 col-form-label">핸드폰 번호</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="phonenumber" name="phonenumber" placeholder="phone"
-                                   required/>
+                            <input type="text" class="form-control" id="id" name="id" placeholder="Id" required/>
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label for="email" class="col-sm-4 col-form-label">이메일</label>
                         <div class="col-sm-6">
-                            <input type="email" class="form-control" id="email" name="email" placeholder="email "
+                            <input type="email" class="form-control" id="email" name="email" placeholder="email"
                                    required/>
                         </div>
                     </div>
-                    <div class="text-center" style="margin-top: 30px;margin-bottom: 20px">
+                    <div class="grid text-center" style="--bs-columns: 4; --bs-gap: 5rem; margin-bottom: 20px;">
+                        <!-- 버튼 타입을 submit으로 하면 위에 form th:action 경로로 보낸다. -->
                         <button type="submit" class="btn btn-outline-dark">확인</button>
-                        <button type="button" class="btn btn-outline-dark" onclick="location.href='/user/login'">취소
+                        <button type="button" class="btn btn-outline-dark" onclick="location.href='/'">
+                            취소
                         </button>
                     </div>
                 </form>

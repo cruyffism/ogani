@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface UserMapper {
 
     // id 중복체크
-    // 리턴값(타입) 메소드 이름(타입 변수명)
+    // 리턴값(타입) 메소드(xml이랑연결하기 위해서 쓴다! xml 아이디와 같아야함) 이름(타입 변수명)
     Integer idCheck(String id);
 
     // email 중복체크
@@ -23,4 +23,14 @@ public interface UserMapper {
 
     //조건(이름/전번/비번)에 맞는 아이디 출력
     UserResDto findId(UserReqDto userReqDto);
+
+    //비밀번호 찾기
+    UserResDto findPw(UserReqDto userReqDto);
+
+    //비밀번호 수정
+    Integer updatePw(UserResDto userResDto);
+
+    //마마이페이지 조회
+    UserResDto mypage(String id);
+
 }

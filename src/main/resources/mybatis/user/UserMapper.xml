@@ -51,11 +51,31 @@
 
     <!-- 조건(이름/전번/비번)에 맞는 아이디 출력 -->
     <!--parameterType: 매개변수를 컨트롤러에서 xml까지 보내는거 resultType: xml 결과값을 컨트롤러에 보내는고     -->
-    <select id="findId" resultType="com.minki.ogani.dto.user.UserResDto" parameterType="UserReqDto">
+    <select id="findId" resultType="UserResDto" parameterType="UserReqDto">
         SELECT id
         FROM user
         WHERE name = #{name} and phonenumber = #{phonenumber} and email = #{email}
     </select>
 
+    <!-- 비밀번호 찾기 -->
+    <select id="findPw" resultType="UserResDto" parameterType="UserReqDto">
+        SELECT password, id
+        FROM user
+        WHERE id = #{id} and email = #{email}
+    </select>
+
+    <!-- 비밀번호 수정 -->
+    <update id="updatePw" parameterType="UserResDto">
+        update user
+        set password = #{password}
+        where id = #{id}
+    </update>
+
+    <!--마이페이지 조회-->
+    <select id="mypage" resultType="UserResDto" parameterType="String">
+        SELECT name, id, birthday, phonenumber, email, postcode, address, detail_address, extra_address
+        FROM user
+        WHERE id = #{id}
+    </select>
 </mapper>
 

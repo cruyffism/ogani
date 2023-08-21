@@ -5,9 +5,6 @@
 <head th:replace="fragment/common :: head('ogani')">
 </head>
 <body>
-<!-- Page Preloder -->
-<!--<div id="preloder" th:replace="fragment/common :: preloder">-->
-<!--</div>-->
 
 <!-- Humberger Begin -->
 <div class="humberger__menu__overlay"></div>
@@ -29,16 +26,10 @@
     <div class="container" style="width: 25%">
         <div class="text-center" style="margin: 30px 0px">
             <h2 class="section-heading text-uppercase">아이디 찾기</h2>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-lg-12">
-                <section>
-                    <div class="mb-3">
-                        <p th:text="|찾으시는 아이디는  ${id.id} 입니다.|" style="margin-top: 40px"></p>
-                        <button class="btn btn-primary" type="button" onclick="location.href='/user/login'">로그인
-                        </button>
-                    </div>
-                </section>
+            <div class="mb-3">
+                <p th:utext="|찾으시는 아이디는  <b>${id.id}</b> 입니다.|" style="margin-top: 40px"></p>
+                <button type="button" class="btn btn-outline-dark" onclick="location.href='/user/login'">로그인
+                </button>
             </div>
         </div>
     </div>

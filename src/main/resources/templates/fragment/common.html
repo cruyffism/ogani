@@ -27,10 +27,6 @@
 </head>
 
 <body>
-<!-- Page Preloder -->
-<div id="preloder" th:fragment="preloder">
-    <div class="loader"></div>
-</div>
 
 <!-- Humberger Begin -->
 <div class="humberger__menu__overlay"></div>
@@ -40,6 +36,7 @@
     </div>
     <div class="humberger__menu__cart">
         <ul>
+            <li sec:authorize="isAuthenticated()"><a href="/user/mypage"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a></li>
             <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
             <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
         </ul>
@@ -194,6 +191,7 @@
             <div class="col-lg-3">
                 <div class="header__cart">
                     <ul>
+                        <li sec:authorize="isAuthenticated()"><a href="/user/mypage"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a></li>
                         <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
                         <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
                     </ul>

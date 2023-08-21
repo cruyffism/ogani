@@ -47,5 +47,20 @@ public class UserService {
         return userMapper.findId(userReqDto);
     }
 
+    // 비밀번호 찾기
+    public UserResDto findPw(UserReqDto userReqDto) {
+
+        return userMapper.findPw(userReqDto);
+    }
+
+    //비밀번호 수정
+    public Integer updatePw(UserResDto userResDto) {
+        return userMapper.updatePw(userResDto);
+    }
+
+    //마마이페이지 조회
+    public UserResDto mypage(String id) {
+        return userMapper.mypage(id);
+    }
 
 }
