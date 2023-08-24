@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!--타임리프 문법 및 스프링 시큐리티 사용하기 위해 선언, 타임리프를 사용하는 이유는 백엔드 소스를 동적으로 연결하기 위해서-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragment/common :: head('ogani')">
+</head>
+<body>
+
+<!-- Humberger Begin -->
+<div class="humberger__menu__overlay"></div>
+<div class="humberger__menu__wrapper" th:replace="fragment/common :: humberger">
+</div>
+<!-- Humberger End -->
+
+<!-- Header Section Begin -->
+<header class="header" th:replace="fragment/common :: header">
+</header>
+<!-- Header Section End -->
+
+<!--common.html에 넣은 사이드 메뉴바 소스를 login.html과 연결 해주는 코드 -->
+<section class="hero hero-normal" th:replace="fragment/common :: hero">
+</section>
+
+<!--login-->
+<section id="login">
+  <div class="container" style="width: 50%">
+    <div class="text-center" style="margin: 30px 0px">
+      <h2 class="section-heading text-uppercase">마이페이지</h2>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-12">
+        <!-- Project details-->
+        <div class="mb-3 row">
+          <label for="name" class="col-sm-4 col-form-label">name</label>
+          <div class="col-sm-6"><input type="text" class="form-control" id="name" name="name"
+                                       th:value="${info.name}"></div>
+        </div>
+        <div class="mb-3 row">
+          <label for="id" class="col-sm-4 col-form-label">id</label>
+          <div class="col-sm-6"><input type="text" class="form-control" id="id" name="id"
+                                       th:value="${info.id}">
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="birthday" class="col-sm-4 col-form-label">birthday</label>
+          <div class="col-sm-6"><input type="date" class="form-control" id="birthday"
+                                       name="birthday" th:value="${info.birthday}">
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="phonenumber" class="col-sm-4 col-form-label">phonenumber</label>
+          <div class="col-sm-6"><input type="text" class="form-control" id="phonenumber"
+                                       name="phonenumber" th:value="${info.phonenumber}">
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="email" class="col-sm-4 col-form-label">email</label>
+          <div class="col-sm-6"><input type="email" class="form-control" id="email" name="email"
+                                       th:value="${info.email}">
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="postcode" class="col-sm-4 col-form-label">postcode</label>
+          <div class="col-sm-6"><input type="text" class="form-control" id="postcode" name="postcode"
+                                       th:value="${info.postcode}">
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="address" class="col-sm-4 col-form-label">address</label>
+          <div class="col-sm-6"><input type="text" class="form-control" id="address" name="address"
+                                       th:value="${info.address}">
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="extra_address" class="col-sm-4 col-form-label">extra_address</label>
+          <div class="col-sm-6"><input type="text" class="form-control" id="extra_address"
+                                       name="extra_address" th:value="${info.extra_address}">
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="detail_address" class="col-sm-4 col-form-label">detail_address</label>
+          <div class="col-sm-6"><input type="text" class="form-control" id="detail_address"
+                                       name="detail_address" th:value="${info.detail_address}">
+          </div>
+        </div>
+        <div class="grid text-center" style="--bs-columns: 4; --bs-gap: 5rem;">
+          <button type="submit" class="btn btn-outline-dark"
+                  th:onclick="|location.href='@{/user/updateInfo}'|">
+            저장
+          </button>
+          <button type="submit" class="btn btn-outline-dark"
+                  th:onclick="|location.href='@{/user/mypage}'|">취소
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer Section Begin -->
+<footer class="footer spad" th:replace="fragment/common :: footer">
+</footer>
+<!-- Footer Section End -->
+
+<!-- Js Plugins -->
+<script src="/static/js/jquery-3.3.1.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/jquery.nice-select.min.js"></script>
+<script src="/static/js/jquery-ui.min.js"></script>
+<script src="/static/js/jquery.slicknav.js"></script>
+<script src="/static/js/mixitup.min.js"></script>
+<script src="/static/js/owl.carousel.min.js"></script>
+<script src="/static/js/main.js"></script>
+<!--login.js과 연결함!-->
+<script src="/static/js/login.js"></script>
+</body>
+
+</html>

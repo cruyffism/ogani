@@ -23,7 +23,7 @@
 
 <!--login-->
 <section id="login">
-    <div class="container" style="width: 25%">
+    <div class="container" style="width: 50%">
         <div class="text-center" style="margin: 30px 0px">
             <h2 class="section-heading text-uppercase">마이페이지</h2>
         </div>
@@ -32,42 +32,55 @@
                 <!-- Project details-->
                 <div class="mb-3 row">
                     <label for="name" class="col-sm-4 col-form-label">name</label>
-                    <div class="col-sm-6"><input type="text" class="form-control" id="name" name="name"
+                    <div class="col-sm-6"><input type="text" disabled class="form-control" id="name" name="name"
                                                  th:value="${info.name}"></div>
                 </div>
                 <div class="mb-3 row">
                     <label for="id" class="col-sm-4 col-form-label">id</label>
-                    <div class="col-sm-6"><input type="id" class="form-control" id="id" name="id" th:value="${info.id}">
+                    <div class="col-sm-6"><input type="text" disabled class="form-control" id="id" name="id"
+                                                 th:value="${info.id}">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="birthday" class="col-sm-4 col-form-label">birthday</label>
-                    <div class="col-sm-6"><input type="birthday" class="form-control" id="birthday" name="id" th:value="${info.birthday}">
+                    <div class="col-sm-6"><input type="date" disabled class="form-control" id="birthday"
+                                                 name="birthday" th:value="${info.birthday}">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="phonenumber" class="col-sm-4 col-form-label">phonenumber</label>
-                    <div class="col-sm-6"><input type="phonenumber" class="form-control" id="phonenumber" name="phonenumber" th:value="${info.phonenumber}">
+                    <div class="col-sm-6"><input type="text" disabled class="form-control" id="phonenumber"
+                                                 name="phonenumber" th:value="${info.phonenumber}">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="email" class="col-sm-4 col-form-label">email</label>
-                    <div class="col-sm-6"><input type="email" class="form-control" id="email" name="email" th:value="${info.email}">
+                    <div class="col-sm-6"><input type="email" disabled class="form-control" id="email" name="email"
+                                                 th:value="${info.email}">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="postcode" class="col-sm-4 col-form-label">postcode</label>
-                    <div class="col-sm-6"><input type="postcode" class="form-control" id="postcode" name="postcode" th:value="${info.postcode}">
+                    <div class="col-sm-6"><input type="text" disabled class="form-control" id="postcode" name="postcode"
+                                                 th:value="${info.postcode}">
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="detail_address" class="col-sm-4 col-form-label">detail_address</label>
-                    <div class="col-sm-6"><input type="detail_address" class="form-control" id="detail_address" name="detail_address" th:value="${info.detail_address}">
+                    <label for="address" class="col-sm-4 col-form-label">address</label>
+                    <div class="col-sm-6"><input type="text" disabled class="form-control" id="address" name="address"
+                                                 th:value="${info.address}">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="extra_address" class="col-sm-4 col-form-label">extra_address</label>
-                    <div class="col-sm-6"><input type="extra_address" class="form-control" id="extra_address" name="extra_address" th:value="${info.extra_address}">
+                    <div class="col-sm-6"><input type="text" disabled class="form-control" id="extra_address"
+                                                 name="extra_address" th:value="${info.extra_address}">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="detail_address" class="col-sm-4 col-form-label">detail_address</label>
+                    <div class="col-sm-6"><input type="text" disabled class="form-control" id="detail_address"
+                                                 name="detail_address" th:value="${info.detail_address}">
                     </div>
                 </div>
                 <div class="grid text-center" style="--bs-columns: 4; --bs-gap: 5rem;">

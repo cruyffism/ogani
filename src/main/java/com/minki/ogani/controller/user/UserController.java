@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 @Controller
-@RequestMapping ("/user") // 전체 백엔드 주소 경로  = prefix
+@RequestMapping("/user") // 전체 백엔드 주소 경로  = prefix
 public class UserController {
     @Autowired
     private UserService userService;
@@ -36,7 +36,7 @@ public class UserController {
     // 회원가입 페이지(빈곽)
     // 접근제한자 리턴값(타입) 메소드명(매개변수)
     @GetMapping("/signupForm")
-    public String signupForm(){
+    public String signupForm() {
         return "user/signupForm";
     }
 
@@ -44,7 +44,7 @@ public class UserController {
     // 회원가입 페이지 ajax
     @GetMapping("/signupAjax/{type}")
     public String signupAjax(Model model, @PathVariable Integer type) {
-        if(type == 1) {
+        if (type == 1) {
             model.addAttribute("type", type);
             return "user/userSignupAjax";
         } else {
@@ -72,9 +72,9 @@ public class UserController {
     //회원가입
     @PostMapping("/signup")
     public String saveUser(Model model, @ModelAttribute UserReqDto userReqDto, HttpServletResponse response) throws IOException {
-        Integer result =  userService.saveUser(userReqDto);
+        Integer result = userService.saveUser(userReqDto);
 
-        if(result == 1){
+        if (result == 1) {
             response.setContentType("text/html; charset=UTF-8");
             PrintWriter writer = response.getWriter();
             writer.println("<script>alert('회원가입되었습니다.');</script>");
@@ -92,7 +92,7 @@ public class UserController {
     // 로그인(로그인 화면 이동)
     @GetMapping("/login")
     public String login(@RequestParam(value = "error", required = false) String error,
-                        @RequestParam(value = "exception", required = false) String exception, Model model){
+                        @RequestParam(value = "exception", required = false) String exception, Model model) {
         model.addAttribute("error", error);
         model.addAttribute("exception", exception);
         return "user/loginForm";
@@ -108,7 +108,7 @@ public class UserController {
     @PostMapping("/findId")
     public String findId(Model model, @ModelAttribute UserReqDto userReqDto, HttpServletResponse response) throws IOException {
         UserResDto userResDto = userService.findId(userReqDto);
-        if(userResDto == null) {
+        if (userResDto == null) {
             response.setContentType("text/html; charset=UTF-8");
             PrintWriter writer = response.getWriter();
             writer.println("<script>alert('해당정보가 존재하지 않습니다.');</script>");
@@ -181,12 +181,22 @@ public class UserController {
 
     //마이페이지
     @GetMapping("/mypage")
-    public String mypage(Model model){
+    public String mypage(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication(); // 백엔드에서 로그인 정보 가져와서 아이디 값을 조회
         String id = auth.getName();
-        UserResDto userResDto =  userService.mypage(id);
-        model.addAttribute("info",userResDto);
+        UserResDto userResDto = userService.mypage(id);
+        model.addAttribute("info", userResDto);
         return "user/mypage";
+    }
+
+    // 회원정보 변경화면
+    @GetMapping("/updateInfoForm")
+    public String updateInfoForm(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication(); // 백엔드에서 로그인 정보 가져와서 아이디 값을 조회
+        String id = auth.getName();
+        UserResDto userResDto = userService.mypage(id);
+        model.addAttribute("info", userResDto);
+        return "user/updateInfoForm";
     }
 
 
