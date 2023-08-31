@@ -14,10 +14,11 @@
     <!-- Humberger End -->
 
     <!-- Header Section Begin -->
-    <header class="header" th:replace="fragment/common :: header">
+    <header class="header" th:replace="fragment/common :: header(${role})">
     </header>
     <!-- Header Section End -->
 
+    <th:block th:if="${role == '[user]' || role == null}">
     <!-- Hero Section Begin -->
     <section class="hero">
         <div class="container">
@@ -543,6 +544,9 @@
         </div>
     </section>
     <!-- Blog Section End -->
+    </th:block>
+    <th:block th:if="${role == '[admin]'}">
+    </th:block>
 
     <!-- Footer Section Begin -->
     <footer class="footer spad" th:replace="fragment/common :: footer">

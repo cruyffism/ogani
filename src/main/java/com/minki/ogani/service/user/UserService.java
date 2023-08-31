@@ -63,4 +63,24 @@ public class UserService {
         return userMapper.mypage(id);
     }
 
+    // 마이페이지 수정
+    public Integer updateInfo(UserReqDto userReqDto) {
+        return userMapper.updateInfo(userReqDto);
+    }
+
+    // 비밀번호 변경
+    public Integer updatePw(UserReqDto userReqDto) {
+        return userMapper.updateMyPw(userReqDto);
+    }
+
+    //회원 탈퇴
+    public Integer deleteInfo(String id) {
+        return userMapper.deleteInfo(id);
+    }
+
+    //회원 권한 삭제
+    public Integer deleteRole(Integer user_id) {
+        return userMapper.deleteRole(user_id);
+    }
+
 }

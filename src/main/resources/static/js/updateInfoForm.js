@@ -1,10 +1,10 @@
-let isEmailCheck = 0; //이메일 체크 여부 확인 (아이디 중복일 경우 = 0 , 중복이 아닐 경우 = 1)
+let isEmailCheck = 1; //이메일 체크 여부 확인 (아이디 중복일 경우 = 0 , 중복이 아닐 경우 = 1)
 
 //첫 화면은 기본값 1(일반 사용자 회원가입)로해서 바로 화면 보여주기
 $(document).ready(function () {
     console.log("ready!");
     // 회원가입 폼 null 체크 및 아이디 중복체크 문구 나오게
-    //userSignupAjax.html 안에 id = " signUpForm인 안에 내용들을 모두 불러와서 const signUpForm 변수명에 담은거다!
+    //userSignupAjax.html 안에 id = " updateInfoForm인 안에 내용들을 모두 불러와서 const updateInfoForm 변수명에 담은거다!
     const updateInfoForm = document.querySelectorAll('#updateInfoForm')
     Array.from(updateInfoForm).forEach(form => {
         form.addEventListener('submit', event => {
@@ -79,6 +79,20 @@ function phoneCheck(number){
         $('#phone-error').hide(); // 에러문구 없애줘
         $("#updateBtn").attr("disabled",false) // 버튼 활성화
     }
+}
+
+// 이메일 유효성 체크하는 function
+function emailRealCheck(email) {
+    const ori_email = $('#oriEmail').val()
+
+    if (ori_email === email) {
+        $("#emailCheck").attr("disabled", true)
+        isEmailCheck = 1
+    } else {
+        $("#emailCheck").attr("disabled", false)
+        isEmailCheck = 0
+    }
+
 }
 
 // 주소 api

@@ -64,7 +64,7 @@
         WHERE id = #{id} and email = #{email}
     </select>
 
-    <!-- 비밀번호 수정 -->
+    <!-- 비밀번호 수정 >>파라미터 타입 바꾸기 -->
     <update id="updatePw" parameterType="UserResDto">
         update user
         set password = #{password}
@@ -73,12 +73,42 @@
 
     <!--마이페이지 조회-->
     <select id="mypage" resultType="UserResDto" parameterType="String">
-        SELECT name, id, birthday, phonenumber, email, postcode, address, detail_address, extra_address
+        SELECT name, id, birthday, phonenumber, email, postcode, address, detail_address, extra_address, password
         FROM user
         WHERE id = #{id}
     </select>
 
+    <!--마이페이지 수정-->
+    <update id="updateInfo" parameterType="UserReqDto">
+        update user
+        set name = #{name}, birthday = #{birthday}, phonenumber = #{phonenumber}, email = #{email}, postcode = #{postcode}, address = #{address},
+            detail_address = #{detailAddress}, extra_address = #{extraAddress}
+        where id = #{id}
+    </update>
 
+    <!--비밀번호 변경-->
+    <update id="updateMyPw" parameterType="UserReqDto">
+        UPDATE user
+        SET password = #{password}
+        where id = #{id}
+    </update>
+
+    <!--회원 탈퇴-->
+    <!--#이 한개 일때는 변수의 타입을 파라미터 타입에 써라!-->
+    <delete id="deleteInfo" parameterType="String">
+        DELETE
+        FROM user
+        WHERE id = #{id}
+    </delete>
+
+    <!--회원 권한 삭제-->
+    <!--#이 한개 일때는 변수의 타입을 파라미터 타입에 써라!-->
+    <!--꿀팁: 웬만하면 select 빼고는 resultType 선언 안해도 됨! 왜냐면 다 기본값이 integer라서!-->
+    <delete id="deleteRole" parameterType="Integer">
+        DELETE
+        FROM user_role
+        WHERE user_id = #{user_id}
+    </delete>
 
 </mapper>
 

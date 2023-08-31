@@ -10,6 +10,7 @@ public interface UserMapper {
 
     // id 중복체크
     // 리턴값(타입) 메소드(xml이랑연결하기 위해서 쓴다! xml 아이디와 같아야함) 이름(타입 변수명)
+    // select 제외하고는 전부 리턴값(타입)은 기본적으로 Integer
     Integer idCheck(String id);
 
     // email 중복체크
@@ -32,5 +33,18 @@ public interface UserMapper {
 
     //마마이페이지 조회
     UserResDto mypage(String id);
+
+    // 마이페이지 수정
+    Integer updateInfo(UserReqDto userReqDto);
+
+    // 비밀번호 변경
+    Integer updateMyPw(UserReqDto userReqDto);
+
+    // 회원 탈퇴
+    Integer deleteInfo(String id);
+
+    //회원 권한 삭제
+    Integer deleteRole(Integer user_id);
+
 
 }

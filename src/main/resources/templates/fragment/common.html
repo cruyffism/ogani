@@ -107,7 +107,8 @@
 <!-- Humberger End -->
 
 <!-- Header Section Begin -->
-<header class="header" th:fragment="header">
+<header class="header" th:fragment="header(role)">
+    <th:block th:if="${role == '[user]' || role == null}">
     <div class="header__top">
         <div class="container">
             <div class="row">
@@ -203,6 +204,107 @@
             <i class="fa fa-bars"></i>
         </div>
     </div>
+    </th:block>
+    <th:block th:if="${role == '[admin]'}">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="header__top__left">
+                            <ul>
+                                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
+                                <li>Free Shipping for all Order of $99</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="header__top__right">
+                            <div class="header__top__right__social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-linkedin"></i></a>
+                                <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                            </div>
+                            <div class="header__top__right__language">
+                                <img src="/static/img/language.png" alt="">
+                                <div>English</div>
+                                <span class="arrow_carrot-down"></span>
+                                <ul>
+                                    <li><a href="#">Spanis</a></li>
+                                    <li><a href="#">English</a></li>
+                                </ul>
+                            </div>
+                            <div sec:authorize="isAuthenticated()">
+                                <div class="header__top__right__auth">
+                                    <i class="fa fa-user"></i><a href="#" th:text="|${#authentication.name}님|"
+                                                                 style="display: inline-block; margin-left:6px;">환영합니다.</a>
+                                </div>
+                                <div class="header__top__right__auth">
+                                    <form name="logout" th:action="@{/logout}" method="post">
+                                        <a onclick="document.forms['logout'].submit();" style="cursor: pointer;"><i
+                                                class="fa fa-sign-out"
+                                                aria-hidden="true"></i>
+                                            Logout</a>
+                                    </form>
+                                </div>
+                            </div>
+                            <div sec:authorize="!isAuthenticated()">
+                                <div class="header__top__right__auth">
+                                    <a href="/user/login"><i class="fa fa-user"></i> Login</a>
+                                </div>
+                                <div class="header__top__right__auth">
+                                    <a href="/user/signupForm"><i class="fa fa-user-plus" aria-hidden="true"></i> SignUp</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="header__logo">
+                        <a href="/"><img src="/static/img/logo.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <nav class="header__menu">
+                        <ul>
+                            <li class="active"><a href="/">회원 관리</a></li>
+                            <li><a href="./shop-grid.html">상품 관리</a></li>
+                            <li><a href="#">판매 관리</a>
+                                <ul class="header__menu__dropdown">
+                                    <li><a href="./shop-details.html">판매내역관리</a></li>
+                                    <li><a href="./shoping-cart.html">발주확인/배송관리</a></li>
+                                    <li><a href="./checkout.html">결제취소관리</a></li>
+                                    <li><a href="./blog-details.html">반품교환관리</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="./blog.html">게시글 관리</a>
+                                <ul class="header__menu__dropdown">
+                                    <li><a href="./shop-details.html">공지사항</a></li>
+                                    <li><a href="./shoping-cart.html">1대1 문의관리</a></li>
+                                    <li><a href="./checkout.html">리뷰관리</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="hero__item2 set-bg" data-setbg="/static/img/matcha.jpg">
+                <div class="hero__text" style="float: right">
+                    <span>FRUIT FRESH</span>
+                    <h2>Vegetable <br />100% Organic</h2>
+                    <p>Free Pickup and Delivery Available</p>
+                    <a href="#" class="primary-btn">SHOP NOW</a>
+                </div>
+            </div>
+            <div class="humberger__open">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </th:block>
 </header>
 <!-- Header Section End -->
 

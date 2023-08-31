@@ -4,6 +4,7 @@ import com.minki.ogani.dto.user.UserReqDto;
 import com.minki.ogani.dto.user.UserResDto;
 import com.minki.ogani.service.user.UserService;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
@@ -18,6 +19,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+
+// 한번 클릭 시 {프 >> 백(컨트롤러<->service<->mapper<->xml) >> 프} 이 과정이 한 번에 이루어짐!!!!!!!!1
 
 @Controller
 @RequestMapping("/user") // 전체 백엔드 주소 경로  = prefix
@@ -32,6 +36,17 @@ public class UserController {
 
     @Value("${spring.mail.username}")
     private String from;
+
+
+    // 메인 페이지
+    @GetMapping("/index") // GET(조회), POST(생성, 자장), PUT(수정), DELETE(삭제) 뒤에다가 경로 설정하기! ex) "/index"
+    public String home(Model model) { // 접근제한자 리턴값 메소드명(매개변수){}  >> 이게 하나의 메소드이다.
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication(); // 백엔드에서  글 저장하려할ㅈ때 로그인 정보 가져와서 아이디 값을 디비에 넣어주는거!
+        String role = auth.getAuthorities().toString();
+        model.addAttribute("role", role);
+
+        return "index"; // 리턴값은 프론트엔드로 가는 경로 (템플릿 밑에 경로), index.html로 보낸다.
+    }
 
     // 회원가입 페이지(빈곽)
     // 접근제한자 리턴값(타입) 메소드명(매개변수)
@@ -62,6 +77,7 @@ public class UserController {
     }
 
     // 이메일 중복 체크 (restApi라고 부른다. >> 결과값이 html이 아니라 json으로 가는거! 보통 실무에서 쓰는 방식)
+    // @RequestParam을 통해서 프론트엔드에서 친 이메일을 받는다. 그리고 리턴은 개수를 프론트로 보낸다.
     @GetMapping("/emailCheckAjax")
     @ResponseBody
     public Integer emailCheck(@RequestParam String email) {
@@ -150,7 +166,7 @@ public class UserController {
             message.setReplyTo(from);
             javaMailSender.send(message);
 
-            // 3. 임시 비밀번호 db에 수정
+            // 3. 암호화해서 임시 비밀번호 db에 수정
             userResDto.setPassword(passwordEncoder.encode(tempPw));
             Integer updatePw = userService.updatePw(userResDto);
 
@@ -199,5 +215,89 @@ public class UserController {
         return "user/updateInfoForm";
     }
 
+    // 마이페이지 수정
+    // 한번 클릭 시 {프 >> 백(컨트롤러<->service<->mapper<->xml) >> 프} 이 과정이 한 번에 이루어짐!!!!!!!!1
+    @PostMapping("/updateInfo")
+    public String updateInfo(Model model, @ModelAttribute UserReqDto userReqDto, HttpServletResponse response) throws IOException {
+        Integer updateInfo = userService.updateInfo(userReqDto);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication(); // 백엔드에서 로그인 정보 가져와서 아이디 값을 조회
+        String id = auth.getName();
+        UserResDto userResDto = userService.mypage(id);
+        model.addAttribute("info", userResDto);
+        if(updateInfo==1) {
+            response.setContentType("text/html; charset=UTF-8");
+            PrintWriter writer = response.getWriter();
+            writer.println("<script>alert('정보 수정이 완료되었습니다.');</script>");
+            writer.flush();
+            return "user/mypage";
+        } else {
+            response.setContentType("text/html; charset=UTF-8");
+            PrintWriter writer = response.getWriter();
+            writer.println("<script>alert('정보 수정에 실패하였습니다.');</script>");
+            writer.flush();
+            return  "user/updateInfoForm";
+        }
 
+    }
+
+    // 비밀번호 변경 페이지(빈곽)
+    @GetMapping("/updatePwForm")
+    public String updatePwForm() {
+        return "user/updatePwForm";
+    }
+
+
+    // 비밀번호 변경
+    // @ModelAttribute >> 프론트에서 보내준 변수들을(여기선 비밀번호) 받아서 백엔드로 보낸다.
+    //TODO 복습 필요
+    @PostMapping("/updatePw")
+    public String updatePw(@ModelAttribute  UserReqDto userReqDto, HttpServletResponse response) throws IOException{
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication(); // 백엔드에서 로그인 정보 가져와서 아이디 값을 조회
+        String id = auth.getName();
+        userReqDto.setId(id);
+        userReqDto.setPassword(passwordEncoder.encode(userReqDto.getPassword())); //비번 암호화
+        Integer result = userService.updatePw(userReqDto);
+        if(result == 1) {
+            response.setContentType("text/html; charset=UTF-8");
+            PrintWriter writer = response.getWriter();
+            writer.println("<script>alert('비밀번호 변경이 완료되었습니다.');</script>");
+            writer.flush();
+            return "index";
+        } else {
+            response.setContentType("text/html; charset=UTF-8");
+            PrintWriter writer = response.getWriter();
+            writer.println("<script>alert('비밀번호 변경에 실패하였습니다.');</script>");
+            writer.flush();
+            return  "user/updatePwForm";
+        }
+    }
+
+    // 회원 탈퇴화면
+    @GetMapping("/deleteInfoForm")
+    public String deleteInfoForm(){
+        return "user/deleteInfoForm";
+    }
+
+    //회원 탈퇴(서비스 2개 호출: 처음 호출은 비밀번호를 비교하기 위해 로그인 한 사람의 회원정보를 가져와서 일치하면 삭제하는 서비스를 호출해야함)
+    // 메소드 안에서 서비스를 두 개 호출 (결론적으로 회원정보 가져오는 호출 하나, 일치 시 삭제하는 호출 하나!)
+
+    @PostMapping("/deleteInfo")
+    public String deleteInfo(@RequestParam String password, HttpSession session, HttpServletResponse response) throws IOException{ //RequestParam은 프론트에서 변수를 하나만 보낼 때 사용한다.
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication(); // 백엔드에서 로그인 정보 가져와서 아이디 값을 조회
+        String id = auth.getName();
+        UserResDto userResDto = userService.mypage(id);
+        String password1 = userResDto.getPassword();
+        if (passwordEncoder.matches(password,password1)) {
+            Integer deleteRole = userService.deleteRole(userResDto.getUser_id());
+            Integer deleteUser = userService.deleteInfo(userResDto.getId());
+            session.invalidate();
+            return "redirect:/";
+        } else {
+            response.setContentType("text/html; charset=UTF-8");
+            PrintWriter writer = response.getWriter();
+            writer.println("<script>alert('비밀번호가 틀렸습니다.');</script>");
+            writer.flush();
+            return "user/deleteInfoForm";
+        }
+    }
 }

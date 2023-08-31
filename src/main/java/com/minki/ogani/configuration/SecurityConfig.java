@@ -51,7 +51,7 @@ public class SecurityConfig {
                                 .loginProcessingUrl("/user/loginProc") // 프론트에서 로그인 버튼 클릭 시 연결하는 url!
                                 .usernameParameter("id") // id 값 받는 역할
                                 .passwordParameter("password") // pw 값 받는 역할
-                                .defaultSuccessUrl("/", true) // 로그인 성공시 가는 페이지
+                                .defaultSuccessUrl("/user/index", true) // 로그인 성공시 가는 페이지
                                 .failureHandler(customFailureHandler) // 로그인 실패 핸들러 >> 콘피규레이션에서 customFailureHandler을 의미
                                 .permitAll() //접근 허용
                 );
