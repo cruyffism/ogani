@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!--타임리프 문법 및 스프링 시큐리티 사용하기 위해 선언, 타임리프를 사용하는 이유는 백엔드 소스를 동적으로 연결하기 위해서-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragment/common :: head('ogani')">
+</head>
+<body>
+
+<!-- Humberger Begin -->
+<div class="humberger__menu__overlay"></div>
+<div class="humberger__menu__wrapper" th:replace="fragment/common :: humberger">
+</div>
+<!-- Humberger End -->
+
+<!-- Header Section Begin -->
+<header class="header" th:replace="fragment/common :: header('[admin]')">
+</header>
+<!-- Header Section End -->
+
+<!--common.html에 넣은 사이드 메뉴바 소스를 login.html과 연결 해주는 코드 -->
+<section class="hero hero-normal" th:replace="fragment/common :: hero">
+</section>
+
+<!--login-->
+<section id="login">
+    <div class="container">
+        <div class="text-center" style="margin: 30px 0px">
+            <h2 class="section-heading text-uppercase">상품 관리</h2>
+        </div>
+        <button type="button" class="btn btn-outline-dark" style="margin-bottom: 15px;float: right;"
+                th:onclick="|location.href='@{/admin/productRegisterForm}'|">
+            상품등록
+        </button>
+        <form id="form1">
+            <input type="hidden" id="page" name="page" value="1">
+            <input type="hidden" name="sortColumn" id="sortColumn" value=""/>
+            <input type="hidden" name="sortType" id="sortType" value=""/>
+            <input type="hidden" name="idx" id="idx" value=""/>
+            <input type="hidden" name="searchText" id="searchText" value=""/>
+            <!--    noticeSearchText >> 게시판에 칠 검색어    -->
+            <input type="hidden" name="searchType" id="searchType" value=""/>
+            <div id="productList"></div>
+            <div class="text-center">
+                <select id = "searchType2" class="form-select form-select-sm"  style="display:inline-block; width:12%" aria-label="Default select example">
+                    <option value="product_name" selected>상품명</option>
+                    <option value="product_classification">분류</option>
+                </select>
+                <input id="searchText2" class="form-control form-control-sm" style="display:inline-block; width:30%" type="text" placeholder="검색어를 입력하세요" aria-label=".form-control-sm example">
+                <button class="btn btn-primary btn-sm" style="width:10%" type="button" th:onclick="|playerListAjax(1,'product_name','DESC',1)|">검색</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<!-- Footer Section Begin -->
+<footer class="footer spad" th:replace="fragment/common :: footer">
+</footer>
+<!-- Footer Section End -->
+
+<!-- Js Plugins -->
+<script src="/static/js/jquery-3.3.1.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/jquery.nice-select.min.js"></script>
+<script src="/static/js/jquery-ui.min.js"></script>
+<script src="/static/js/jquery.slicknav.js"></script>
+<script src="/static/js/mixitup.min.js"></script>
+<script src="/static/js/owl.carousel.min.js"></script>
+<script src="/static/js/main.js"></script>
+<script src="/static/js/productList.js"></script>
+</body>
+
+
+</html>

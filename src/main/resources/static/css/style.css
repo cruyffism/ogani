@@ -736,8 +736,9 @@ ol {
 
 .hero__item2 {
 	height: 500px;
-	display: flex;
+	display: grid;
 	align-items: center;
+	text-align: right;
 	padding-left: 75px;
 	margin-bottom: 50px;
 }

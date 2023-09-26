@@ -1,0 +1,65 @@
+<table class = "table">
+  <thead>
+  <tr style="text-align: center">
+    <th scope="col">순번</th>
+    <th scope="col">상품명 <img id="sort1" class="product_name"
+                             src="../../static/img/admin/삼각형위.png"
+                             onclick="productSortUpDown(1);"> </th>
+    <th scope="col">상품 이미지 </th>
+    <th scope="col">가격 <img id="sort2" class="product_price"
+                            src="../../static/img/admin/삼각형위.png"
+                            onclick="productSortUpDown(2);"></th>
+    <th scope="col">분류 <img id="sort3" class="product_classification"
+                           src="../../static/img/admin/삼각형위.png"
+                           onclick="productSortUpDown(3);"></th>
+    <th scope="col">설명 </th>
+  </tr>
+  </thead>
+  <tbody>
+  <th:block th:if="${productList.size() == 0}">
+    <td colspan="6" style="text-align:center"> 등록된 상품이 없습니다. </td>
+  </th:block>
+  <th:block th:if="${productList.size() != 0}">
+    <tr th:each="product : ${productList}" style="text-align: center">
+      <td th:text="${productStat.index + 1}"></td>
+      <td th:text="${product.product_name}"></td>
+      <td><img th:src="@{/admin/productImage/{productId}(productId=${product.product_id})}" style="width: 100px; height: 100px"></td>
+      <td th:text="${product.product_price}"></td>
+      <td th:text="${product.product_classification}"></td>
+      <td th:text="${product.product_description}"></td>
+    </tr>
+  </th:block>
+  </tbody>
+</table>
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item">
+      <a class="page-link" th:sortColumn="${PageMaker.criteria.sortColumn}" th:sortType="${PageMaker.criteria.sortType}" th:idx="${PageMaker.criteria.idx}"
+         th:onclick="|javascript:productListAjax(${PageMaker.startPage - PageMaker.displayPageNum},this.getAttribute('sortColumn'),this.getAttribute('sortType'),this.getAttribute('idx'))|" aria-label="Previous" th:classappend="${PageMaker.startPage == 1} ? ' disabled' : ''">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" th:sortColumn="${PageMaker.criteria.sortColumn}" th:sortType="${PageMaker.criteria.sortType}" th:idx="${PageMaker.criteria.idx}"
+         th:onclick="|javascript:productListAjax(${PageMaker.criteria.page - 1},this.getAttribute('sortColumn'),this.getAttribute('sortType'),this.getAttribute('idx'))|" aria-label="Previous" th:classappend="${PageMaker.criteria.page == 1} ? ' disabled' : ''">
+        <span aria-hidden="true">&lsaquo;</span>
+      </a>
+    </li>
+    <th:block  th:each="num : ${#numbers.sequence(PageMaker.startPage,PageMaker.endPage)}">
+      <li class="page-item" th:classappend="${PageMaker.criteria.page == num} ? ' active' : ''"><a class="page-link" th:sortColumn="${PageMaker.criteria.sortColumn}" th:sortType="${PageMaker.criteria.sortType}" th:idx="${PageMaker.criteria.idx}"
+                                                                                                   th:onclick="|javascript:productListAjax(${num},this.getAttribute('sortColumn'),this.getAttribute('sortType'),this.getAttribute('idx'))|" th:text="${num}"></a></li>
+    </th:block>
+    <li class="page-item">
+      <a class="page-link" th:sortColumn="${PageMaker.criteria.sortColumn}" th:sortType="${PageMaker.criteria.sortType}" th:idx="${PageMaker.criteria.idx}"
+         th:onclick="|javascript:productListAjax(${PageMaker.criteria.page + 1},this.getAttribute('sortColumn'),this.getAttribute('sortType'),this.getAttribute('idx'))|" aria-label="Next" th:classappend="${PageMaker.criteria.page == PageMaker.maxPage} ? ' disabled' : ''">
+        <span aria-hidden="true">&rsaquo;</span>
+      </a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" th:sortColumn="${PageMaker.criteria.sortColumn}" th:sortType="${PageMaker.criteria.sortType}" th:idx="${PageMaker.criteria.idx}"
+         th:onclick="|javascript:productListAjax(${PageMaker.endPage + 1},this.getAttribute('sortColumn'),this.getAttribute('sortType'),this.getAttribute('idx'))|" aria-label="Next" th:classappend="${PageMaker.endPage == PageMaker.maxPage} ? ' disabled' : ''">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>

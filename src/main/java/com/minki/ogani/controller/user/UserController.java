@@ -44,7 +44,7 @@ public class UserController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication(); // 백엔드에서  글 저장하려할ㅈ때 로그인 정보 가져와서 아이디 값을 디비에 넣어주는거!
         String role = auth.getAuthorities().toString();
         model.addAttribute("role", role);
-
+        System.out.println("role : " + role);
         return "index"; // 리턴값은 프론트엔드로 가는 경로 (템플릿 밑에 경로), index.html로 보낸다.
     }
 

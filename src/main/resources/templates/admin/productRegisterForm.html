@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--타임리프 문법 및 스프링 시큐리티 사용하기 위해 선언, 타임리프를 사용하는 이유는 백엔드 소스를 동적으로 연결하기 위해서-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragment/common :: head('ogani')">
+</head>
+<body>
+
+<!-- Humberger Begin -->
+<div class="humberger__menu__overlay"></div>
+<div class="humberger__menu__wrapper" th:replace="fragment/common :: humberger">
+</div>
+<!-- Humberger End -->
+
+<!-- Header Section Begin -->
+<header class="header" th:replace="fragment/common :: header('[admin]')">
+</header>
+<!-- Header Section End -->
+
+<!--common.html에 넣은 사이드 메뉴바 소스를 login.html과 연결 해주는 코드 -->
+<section class="hero hero-normal" th:replace="fragment/common :: hero">
+</section>
+
+<!--login-->
+<section id="login">
+    <div class="container">
+        <div class="text-center" style="margin: 30px 0px">
+            <h2 class="section-heading text-uppercase">상품 등록</h2>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <!-- Project details-->
+                <form th:action="@{/user/signup}" method="post" id="signUpForm" class="needs-validation" novalidate>
+                    <input type="hidden" id="type" name="type" th:value="${type}">
+                    <div class="mb-3 row">
+                        <label for="productName" class="col-sm-4 col-form-label">상품명</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="productName"
+                                   name="productName" placeholder="상품명" required/>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="productPrice" class="col-sm-4 col-form-label">가격</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="productPrice" name="productPrice"
+                                   placeholder="가격" required/>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="productClassification" class="col-sm-4 col-form-label">상품 분류</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control"
+                                   id="productClassification"
+                                   name="productClassification" placeholder="상품분류" required/>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="image" class="col-sm-4 col-form-label">상품 이미지</label>
+                        <div class="col-sm-6">
+                            <input type="file" id="image" name="image"
+                                   required/>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="productDescription" class="col-sm-4 col-form-label">상품 설명</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="productDescription" name="productDescription"
+                                   placeholder="상품 설명" required/>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="productQuantity" class="col-sm-4 col-form-label">상품 수량</label>
+                        <div class="col-sm-6">
+                            <input type="number" class="form-control"
+                                   id="productQuantity" name="productQuantity"
+                                   placeholder="상품 수량" required/>
+                        </div>
+                    </div>
+                    <div class="grid text-center" style="--bs-columns: 4; --bs-gap: 5rem;">
+                        <button type="submit" class="btn btn-outline-dark" id="signUpBtn">등록
+                        </button>
+                        <button type="button" class="btn btn-outline-dark"
+                                onclick="location.href='/'">
+                            취소
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer Section Begin -->
+<footer class="footer spad" th:replace="fragment/common :: footer">
+</footer>
+<!-- Footer Section End -->
+
+<!-- Js Plugins -->
+<script src="/static/js/jquery-3.3.1.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/jquery.nice-select.min.js"></script>
+<script src="/static/js/jquery-ui.min.js"></script>
+<script src="/static/js/jquery.slicknav.js"></script>
+<script src="/static/js/mixitup.min.js"></script>
+<script src="/static/js/owl.carousel.min.js"></script>
+<script src="/static/js/main.js"></script>
+<script src="/static/js/productList.js"></script>
+</body>
+
+
+</html>

@@ -13,7 +13,7 @@
 <!-- Humberger End -->
 
 <!-- Header Section Begin -->
-<header class="header" th:replace="fragment/common :: header">
+<header class="header" th:replace="fragment/common :: header('[user]')">
 </header>
 <!-- Header Section End -->
 
@@ -84,7 +84,7 @@
                     </div>
                 </div>
                 <div class="grid text-center" style="--bs-columns: 4; --bs-gap: 8rem; margin: 30px 0px">
-                    <button type="submit" class="btn btn-outline-dark" style="margin-right: 10px"
+                    <button type="button" class="btn btn-outline-dark" style="margin-right: 10px"
                             th:onclick="|location.href='@{/user/updatePwForm}'|">
                         비밀번호 변경
                     </button>
@@ -92,7 +92,7 @@
                             th:onclick="|location.href='@{/user/updateInfoForm}'|">정보수정
                     </button>
                     <!-- 이렇게 온클릭해주면 수정폼으로 가는 api가 호출이되어서 보드컨트롤러의 보드업데이트로 가고 여기서 저장버튼을 누르면 다시 "board/list"로 리턴-->
-                    <button type="submit" class="btn btn-outline-dark"
+                    <button type="button" class="btn btn-outline-dark"
                             th:onclick="|location.href='@{/user/deleteInfoForm}'|">
                         회원탈퇴
                     </button>

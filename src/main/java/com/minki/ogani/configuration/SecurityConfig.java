@@ -38,7 +38,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(
                         (authorizeHttpRequests) ->
                                 authorizeHttpRequests
-                                        .requestMatchers("/", "/static/**","/user/**" ).permitAll() // 이 경로들은 로그인 없이 접근 가능
+                                        .requestMatchers("/","/admin/**", "/static/**","/user/**").permitAll() // 이 경로들은 로그인 없이 접근 가능
                                         .requestMatchers("/admin/**").hasRole("ADMIN") // admin 관련 페이지는 admin 권한을 가진자에게만 접근 허용 하겠다.
                                         .anyRequest().authenticated() // 나머지 url은 로그인해야지만 접근 가능!
                 );
