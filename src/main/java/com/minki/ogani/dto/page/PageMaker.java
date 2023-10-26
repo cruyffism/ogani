@@ -23,7 +23,11 @@ public class PageMaker {
     private void calcData() {
         startPage = ((criteria.getPage() - 1) / displayPageNum) * displayPageNum + 1;
         endPage = startPage + displayPageNum - 1;
-        maxPage = (int) (Math.ceil(totalCount / (double) criteria.getPerPageNum()))+1;
+        if(totalCount == 0){
+            maxPage = 1;
+        } else {
+            maxPage = (int) (Math.ceil(totalCount / (double) criteria.getPerPageNum()));
+        }
         if (endPage > maxPage) {
             endPage = maxPage;
         }

@@ -1,0 +1,65 @@
+<table class = "table">
+
+  <thead>
+  <tr style="text-align: center">
+    <th scope="col">순번 </th>
+    <th scope="col">아이디 </th>
+    <th scope="col">이름 </th>
+    <th scope="col">닉네임 </th>
+    <th scope="col">생일 </th>
+    <th scope="col">핸드폰 번호 </th>
+    <th scope="col">이메일 </th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <th:block th:if="${userList.size() == 0}">
+    <td colspan="8" style="text-align:center"> 회원이 없습니다. </td>
+  </th:block>
+  <th:block th:if="${userList.size() != 0}">
+    <tr th:each="user : ${userList}" style="text-align: center">
+      <td th:text="${(PageMaker.criteria.page - 1) * 10 + userStat.index + 1}"></td>
+      <td th:text="${user.id}"></td>
+      <td th:text="${user.name}"></td>
+      <td th:text="${user.user_id}"></td>
+      <td th:text="${user.birthday}"></td>
+      <td th:text="${user.phonenumber}"></td>
+      <td th:text="${user.email}"></td>
+    </tr>
+  </th:block>
+  </tbody>
+
+</table>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item">
+      <a class="page-link" th:sortColumn="${PageMaker.criteria.sortColumn}" th:sortType="${PageMaker.criteria.sortType}" th:idx="${PageMaker.criteria.idx}"
+         th:onclick="|javascript:userListAjax(${PageMaker.startPage - PageMaker.displayPageNum},this.getAttribute('sortColumn'),this.getAttribute('sortType'),this.getAttribute('idx'))|" aria-label="Previous" th:classappend="${PageMaker.startPage == 1} ? ' disabled' : ''">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" th:sortColumn="${PageMaker.criteria.sortColumn}" th:sortType="${PageMaker.criteria.sortType}" th:idx="${PageMaker.criteria.idx}"
+         th:onclick="|javascript:userListAjax(${PageMaker.criteria.page - 1},this.getAttribute('sortColumn'),this.getAttribute('sortType'),this.getAttribute('idx'))|" aria-label="Previous" th:classappend="${PageMaker.criteria.page == 1} ? ' disabled' : ''">
+        <span aria-hidden="true">&lsaquo;</span>
+      </a>
+    </li>
+    <th:block  th:each="num : ${#numbers.sequence(PageMaker.startPage,PageMaker.endPage)}">
+      <li class="page-item" th:classappend="${PageMaker.criteria.page == num} ? ' active' : ''"><a class="page-link" th:sortColumn="${PageMaker.criteria.sortColumn}" th:sortType="${PageMaker.criteria.sortType}" th:idx="${PageMaker.criteria.idx}"
+                                                                                                   th:onclick="|javascript:userListAjax(${num},this.getAttribute('sortColumn'),this.getAttribute('sortType'),this.getAttribute('idx'))|" th:text="${num}"></a></li>
+    </th:block>
+    <li class="page-item">
+      <a class="page-link" th:sortColumn="${PageMaker.criteria.sortColumn}" th:sortType="${PageMaker.criteria.sortType}" th:idx="${PageMaker.criteria.idx}"
+         th:onclick="|javascript:userListAjax(${PageMaker.criteria.page + 1},this.getAttribute('sortColumn'),this.getAttribute('sortType'),this.getAttribute('idx'))|" aria-label="Next" th:classappend="${PageMaker.criteria.page == PageMaker.maxPage} ? ' disabled' : ''">
+        <span aria-hidden="true">&rsaquo;</span>
+      </a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" th:sortColumn="${PageMaker.criteria.sortColumn}" th:sortType="${PageMaker.criteria.sortType}" th:idx="${PageMaker.criteria.idx}"
+         th:onclick="|javascript:userListAjax(${PageMaker.endPage + 1},this.getAttribute('sortColumn'),this.getAttribute('sortType'),this.getAttribute('idx'))|" aria-label="Next" th:classappend="${PageMaker.endPage == PageMaker.maxPage} ? ' disabled' : ''">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>

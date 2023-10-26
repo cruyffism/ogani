@@ -5,7 +5,7 @@ import lombok.Data;
 //db에서 받는 데이터라 언더바 사용
 @Data
 public class ProductResDto {
-    private Integer product_id;
+    private Long product_id;
     private String product_name;
     private Integer product_price;
     private String product_classification;
@@ -14,5 +14,6 @@ public class ProductResDto {
     private byte[] file_bytes;
     private String mime_type;
     private String product_description;
-    private long product_quantity;
+    private Long product_quantity;
+    private Double product_weight;
 }

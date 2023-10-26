@@ -25,12 +25,8 @@
 <section id="login">
     <div class="container">
         <div class="text-center" style="margin: 30px 0px">
-            <h2 class="section-heading text-uppercase">상품 관리</h2>
+            <h2 class="section-heading text-uppercase">회원 관리</h2>
         </div>
-        <button type="button" class="btn btn-outline-dark" style="margin-bottom: 15px;float: right;"
-                th:onclick="|location.href='@{/admin/productRegisterForm}'|">
-            상품등록
-        </button>
         <form id="form1">
             <input type="hidden" id="page" name="page" value="1">
             <input type="hidden" name="sortColumn" id="sortColumn" value=""/>
@@ -39,15 +35,15 @@
             <input type="hidden" name="searchText" id="searchText" value=""/>
             <!--    noticeSearchText >> 게시판에 칠 검색어    -->
             <input type="hidden" name="searchType" id="searchType" value=""/>
-            <div id="productList"></div>
+            <div id="userList"></div>
 <!--            class="text-center"-->
             <div style= "margin: 30px 0px; text-align: center" >
                 <select id = "searchType2" class="form-select form-select-sm"  style="display:inline-block; width:12%;" aria-label="Default select example">
-                    <option value="product_name" selected>상품명</option>
-                    <option value="product_classification">분류</option>
+                    <option value="user_name" selected>이름</option>
+                    <option value="user_id">아이디</option>
                 </select>
                 <input id="searchText2" class="form-control form-control-sm" style="display:inline-block; width:30%" type="text" placeholder="검색어를 입력하세요" aria-label=".form-control-sm example">
-                <button class="btn btn-primary btn-sm" style="width:10%" type="button" th:onclick="|productListAjax(1,'product_name','asc',1)|">검색</button>
+                <button class="btn btn-primary btn-sm" style="width:10%" type="button" th:onclick="|userListAjax(1,'user_id','asc',1)|">검색</button>
             </div>
         </form>
     </div>
@@ -67,7 +63,7 @@
 <script src="/static/js/mixitup.min.js"></script>
 <script src="/static/js/owl.carousel.min.js"></script>
 <script src="/static/js/main.js"></script>
-<script src="/static/js/productList.js"></script>
+<script src="/static/js/userList.js"></script>
 <!--자바스크립트와 연결되어있음-->
 </body>
 

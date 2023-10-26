@@ -13,20 +13,29 @@
                            src="../../static/img/admin/삼각형위.png"
                            onclick="productSortUpDown(3);"></th>
     <th scope="col">설명 </th>
+    <th scope="col">수정 </th>
+    <th scope="col">삭제 </th>
+
   </tr>
   </thead>
   <tbody>
   <th:block th:if="${productList.size() == 0}">
-    <td colspan="6" style="text-align:center"> 등록된 상품이 없습니다. </td>
+    <td colspan="8" style="text-align:center"> 등록된 상품이 없습니다. </td>
   </th:block>
   <th:block th:if="${productList.size() != 0}">
     <tr th:each="product : ${productList}" style="text-align: center">
-      <td th:text="${productStat.index + 1}"></td>
+      <td th:text="${(PageMaker.criteria.page - 1) * 10 + productStat.index + 1}"></td>
       <td th:text="${product.product_name}"></td>
-      <td><img th:src="@{/admin/productImage/{productId}(productId=${product.product_id})}" style="width: 100px; height: 100px"></td>
+      <td><img th:src="@{/admin/productImage/{productId}(productId=${product.product_id})}" style="width: 80px; height: 80px"></td>
       <td th:text="${product.product_price}"></td>
       <td th:text="${product.product_classification}"></td>
       <td th:text="${product.product_description}"></td>
+      <td><img id="edit"
+               src="../../static/img/admin/수정.png"
+               th:onclick="|location.href='@{/admin/productEditForm/{productId}(productId=${product.product_id})}'|"> </td>
+      <td><img id="delete"
+               src="../../static/img/admin/삭제.png"
+               th:onclick="|location.href='@{/admin/productDelete/{productId}(productId=${product.product_id})}'|"> </td>
     </tr>
   </th:block>
   </tbody>

@@ -12,7 +12,7 @@ import java.util.List;
 // select 제외하고는 전부 리턴값(타입)은 기본적으로 Integer
 
 @Mapper
-public interface AdminMapper {
+public interface AdminProductMapper {
 
     // 품목리스트 조회
     List<ProductResDto> productList(Criteria criteria);
@@ -24,4 +24,12 @@ public interface AdminMapper {
     //등록 상품 저장
     Integer productRegister(ProductReqDto productReqDto);
 
+    //단건 상품 조회
+    ProductResDto productInfo(Long productId);
+
+    //등록 상품 수정
+    Integer productUpdate(ProductReqDto productReqDto);
+
+    //등록 상품 삭제
+    Integer productDelete(Long productId);
 }

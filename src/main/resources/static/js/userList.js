@@ -1,9 +1,9 @@
 $(document).ready(function () {
-    productListAjax(1, "product_name", "asc", 1);
+    userListAjax(1, "user_id", "asc", 1);
 })
 
-function productListAjax(page, sortColumn, sortType, idx) {
-    const innerHtml = $("#productList")
+function userListAjax(page, sortColumn, sortType, idx) {
+    const innerHtml = $("#userList")
     const f = document.getElementById("form1");
     f.page.value = page;
     f.sortColumn.value = sortColumn;
@@ -16,7 +16,7 @@ function productListAjax(page, sortColumn, sortType, idx) {
     f.searchType.value = select_value.options[select_value.selectedIndex].value;
     // select_value 변수에서 option이 선택된 값을 list.htmldml 32라인의 value=""에 넣는거!
     $.ajax({
-        url: "/admin/productListAjax",
+        url: "/admin/userListAjax",
         type: 'GET',
         cache: false,
         data: $('#form1').serialize(),
@@ -40,11 +40,11 @@ function productListAjax(page, sortColumn, sortType, idx) {
     })
 }
 
-function productSortUpDown(idx) {
+function userSortUpDown(idx) {
     const imgTag = document.getElementById("sort" + idx);
     if ($('#sortType').val() === 'DESC' && imgTag.className === $('#sortColumn').val()) {
-        productListAjax('1', imgTag.className, 'ASC', idx);
+        userListAjax('1', imgTag.className, 'ASC', idx);
     } else {
-        productListAjax('1', imgTag.className, 'DESC', idx);
+        userListAjax('1', imgTag.className, 'DESC', idx);
     }
 }

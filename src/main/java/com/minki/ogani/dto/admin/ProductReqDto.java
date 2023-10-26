@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class ProductReqDto {
-    private Integer productId;
+    private Long productId;
     private String productName;
     private Integer productPrice;
     private String productClassification;
@@ -13,6 +13,7 @@ public class ProductReqDto {
     private byte[] fileBytes;
     private String mimeType;
     private String productDescription;
-    private long productQuantity;
+    private Long productQuantity;
+    private Double productWeight;
 
 }
