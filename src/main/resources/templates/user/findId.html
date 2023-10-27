@@ -20,12 +20,13 @@
 <!--common.html에 넣은 사이드 메뉴바 소스를 login.html과 연결 해주는 코드 -->
 <section class="hero hero-normal" th:replace="fragment/common :: hero">
 </section>
-
+<section th:replace="fragment/common :: breadcrumb('아이디 찾기')">
+</section>
 <!--login-->
-<section id="findId">
+<section id="findId" style="margin-top: 50px">
     <div class="container" style="width: 25%">
         <div class="text-center" style="margin: 30px 0px">
-            <h2 class="section-heading text-uppercase">아이디 찾기</h2>
+<!--            <h2 class="section-heading text-uppercase">아이디 찾기</h2>-->
             <div class="mb-3">
                 <p th:utext="|찾으시는 아이디는  <b>${id.id}</b> 입니다.|" style="margin-top: 40px"></p>
                 <button type="button" class="btn btn-outline-dark" onclick="location.href='/user/login'">로그인

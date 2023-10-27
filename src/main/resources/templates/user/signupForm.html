@@ -20,13 +20,14 @@
 <!--common.html에 넣은 사이드 메뉴바 소스를 signupForm.html과 연결 해주는 코드 -->
 <section class="hero hero-normal" th:replace="fragment/common :: hero">
 </section>
-
+<section th:replace="fragment/common :: breadcrumb('회원 가입')">
+</section>
 <!--signupTab-->
-<section id="signupTab">
+<section id="signupTab" style="margin-top: 50px">
     <div class="container" style="width: 50%">
-        <div class="text-center" style="margin: 30px 0px 40px 0px;">
-            <h2 class="section-heading text-uppercase">회원가입</h2>
-        </div>
+<!--        <div class="text-center" style="margin: 30px 0px 40px 0px;">-->
+<!--            <h2 class="section-heading text-uppercase">회원가입</h2>-->
+<!--        </div>-->
         <ul class="nav nav-tabs nav-fill flex-column flex-sm-row" style="margin-bottom: 50px">
             <li class="nav-item">
                 <a id="signupTab1" class="nav-link active" aria-current="page" th:onclick="signupAjax(1)">일반 회원</a>

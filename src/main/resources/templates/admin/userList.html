@@ -20,13 +20,14 @@
 <!--common.html에 넣은 사이드 메뉴바 소스를 login.html과 연결 해주는 코드 -->
 <section class="hero hero-normal" th:replace="fragment/common :: hero">
 </section>
-
+<section th:replace="fragment/common :: breadcrumb('회원 관리')">
+</section>
 <!--login-->
-<section id="login">
+<section id="login" style="margin-top: 50px">
     <div class="container">
-        <div class="text-center" style="margin: 30px 0px">
-            <h2 class="section-heading text-uppercase">회원 관리</h2>
-        </div>
+<!--        <div class="text-center" style="margin: 30px 0px">-->
+<!--            <h2 class="section-heading text-uppercase">회원 관리</h2>-->
+<!--        </div>-->
         <form id="form1">
             <input type="hidden" id="page" name="page" value="1">
             <input type="hidden" name="sortColumn" id="sortColumn" value=""/>

@@ -137,7 +137,7 @@ ol {
 .set-bg {
 	background-repeat: no-repeat;
 	background-size: cover;
-	background-position: top center;
+	background-position: center center;
 }
 
 .spad {
@@ -1065,7 +1065,7 @@ ol {
 	font-size: 16px;
 	color: #ffffff;
 	font-weight: 700;
-	margin-right: 20px;
+	/*margin-right: 5px;*/
 	position: relative;
 }
 
@@ -1076,7 +1076,7 @@ ol {
 	height: 1px;
 	width: 10px;
 	background: #ffffff;
-	content: "";
+	/*content: "";*/
 }
 
 .breadcrumb__option span {

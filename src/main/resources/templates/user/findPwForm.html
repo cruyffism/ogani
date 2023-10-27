@@ -20,13 +20,14 @@
 <!--common.html에 넣은 사이드 메뉴바 소스를 login.html과 연결 해주는 코드 -->
 <section class="hero hero-normal" th:replace="fragment/common :: hero">
 </section>
-
+<section th:replace="fragment/common :: breadcrumb('비밀번호 찾기')">
+</section>
 <!--login-->
-<section id="login">
+<section id="login" style="margin-top: 50px">
     <div class="container" style="width: 35%">
-        <div class="text-center" style="margin: 30px 0px">
-            <h2 class="section-heading text-uppercase">비밀번호 찾기</h2>
-        </div>
+<!--        <div class="text-center" style="margin: 30px 0px">-->
+<!--            <h2 class="section-heading text-uppercase">비밀번호 찾기</h2>-->
+<!--        </div>-->
         <div class="row justify-content-center">
             <div class="col-lg-12">
                 <!-- Project details-->
