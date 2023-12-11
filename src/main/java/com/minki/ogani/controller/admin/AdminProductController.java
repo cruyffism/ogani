@@ -48,7 +48,7 @@ public class AdminProductController {
     //상품등록페이지(빈곽)
     @GetMapping("/productRegisterForm")
     public String productRegisterForm() {
-        return "admin/productRegisterForm2";
+        return "admin/productRegisterForm";
     }
 
     //등록 상품 저장
@@ -107,7 +107,7 @@ public class AdminProductController {
     public String productEditForm(Model model, @PathVariable Long productId){
         ProductResDto productInfo = adminService.productInfo(productId);
         model.addAttribute("productInfo", productInfo);
-        return "admin/productEditForm2";
+        return "admin/productEditForm";
     }
 
     //등록 상품 수정

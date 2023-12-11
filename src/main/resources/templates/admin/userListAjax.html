@@ -3,9 +3,12 @@
   <thead>
   <tr style="text-align: center">
     <th scope="col">순번 </th>
-    <th scope="col">아이디 </th>
-    <th scope="col">이름 </th>
-    <th scope="col">닉네임 </th>
+    <th scope="col">아이디 <img id="sort1" class="id"
+                             src="../../static/img/admin/삼각형위.png"
+                             onclick="userSortUpDown(1);"></th>
+    <th scope="col">이름 <img id="sort2" class="name"
+                            src="../../static/img/admin/삼각형위.png"
+                            onclick="userSortUpDown(2);"></th>
     <th scope="col">생일 </th>
     <th scope="col">핸드폰 번호 </th>
     <th scope="col">이메일 </th>
@@ -21,7 +24,6 @@
       <td th:text="${(PageMaker.criteria.page - 1) * 10 + userStat.index + 1}"></td>
       <td th:text="${user.id}"></td>
       <td th:text="${user.name}"></td>
-      <td th:text="${user.user_id}"></td>
       <td th:text="${user.birthday}"></td>
       <td th:text="${user.phonenumber}"></td>
       <td th:text="${user.email}"></td>

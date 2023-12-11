@@ -40,11 +40,11 @@
 <!--            class="text-center"-->
             <div style= "margin: 30px 0px; text-align: center" >
                 <select id = "searchType2" class="form-select form-select-sm"  style="display:inline-block; width:12%;" aria-label="Default select example">
-                    <option value="user_name" selected>이름</option>
-                    <option value="user_id">아이디</option>
+                    <option value="name" selected>이름</option>
+                    <option value="id">아이디</option>
                 </select>
                 <input id="searchText2" class="form-control form-control-sm" style="display:inline-block; width:30%" type="text" placeholder="검색어를 입력하세요" aria-label=".form-control-sm example">
-                <button class="btn btn-primary btn-sm" style="width:10%" type="button" th:onclick="|userListAjax(1,'user_id','asc',1)|">검색</button>
+                <button class="btn btn-primary btn-sm" style="width:10%" type="button" th:onclick="|userListAjax(1,'name','asc',2)|">검색</button>
             </div>
         </form>
     </div>

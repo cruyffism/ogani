@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    userListAjax(1, "user_id", "asc", 1);
+    userListAjax(1, "name", "asc", 2);
 })
 
 function userListAjax(page, sortColumn, sortType, idx) {

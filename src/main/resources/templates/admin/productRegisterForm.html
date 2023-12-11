@@ -20,71 +20,96 @@
 <!--common.html에 넣은 사이드 메뉴바 소스를 login.html과 연결 해주는 코드 -->
 <section class="hero hero-normal" th:replace="fragment/common :: hero">
 </section>
+<section th:replace="fragment/common :: breadcrumb('상품 등록')">
+</section>
 
-<!--login-->
-<section id="productRegister">
+<!-- Product Details Section Begin -->
+<section class="product-details spad"  style="margin-top: 50px">
     <div class="container">
-        <div class="text-center" style="margin: 30px 0px">
-            <h2 class="section-heading text-uppercase">상품 등록</h2>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-lg-12">
-                <!-- Project details-->
-                <form th:action="@{/admin/productRegister}" method="post" enctype="multipart/form-data" id="productRegisterForm" class="needs-validation" novalidate>
-                    <div class="mb-3 row">
-                        <label for="productName" class="col-sm-4 col-form-label">상품명</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="productName"
-                                   name="productName" placeholder="상품명" required/>
+<!--        <div class="text-center" style="margin: 30px 0px">-->
+<!--            <h2 class="section-heading text-uppercase">상품 등록</h2>-->
+<!--        </div>-->
+        <form th:action="@{/admin/productRegister}" method="post" enctype="multipart/form-data" id="productRegisterForm"
+              class="needs-validation" novalidate>
+            <input type="hidden" name="productClassification" id="productClassification" value=""/>
+            <div class="row">
+                <div class="col-lg-5 col-md-5">
+                    <div class="product__details__pic">
+                        <div class="product__details__pic__item">
+                            <img class="product__details__pic__item--large"
+                                 src="/static/img/admin/기본이미지.png" alt="">
                         </div>
                     </div>
-                    <div class="mb-3 row">
-                        <label for="productPrice" class="col-sm-4 col-form-label">가격</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="productPrice" name="productPrice"
-                                   placeholder="가격" required/>
+                    <div style="text-align: center"><a href="#" class="primary-btn">사진 업로드</a></div>
+                    <div class="col-sm-6">
+                        <input type="file" id="image" name="image" required/>
+                    </div>
+                </div>
+                <div class="col-lg-7 col-md-7">
+                    <div class="product__details__text">
+                        <div class="mb-3 row">
+                            <label for="productName" class="col-sm-4 col-form-label">상품명</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="productName"
+                                       name="productName" placeholder="상품명" required/>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="productPrice" class="col-sm-4 col-form-label">가격</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="productPrice" name="productPrice"
+                                       placeholder="가격" required/>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="productDescription" class="col-sm-4 col-form-label">상품 설명</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" id="productDescription" name="productDescription"
+                                          placeholder="상품 설명" required cols="30" rows="5"></textarea>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="productClassification2" class="col-sm-4 col-form-label">상품 분류</label>
+                            <div class="col-sm-8">
+                                <select id = "productClassification2" class="form-select form-select-sm"  style="display:inline-block; width:12%" aria-label="Default select example">
+                                    <option value="vegetables" selected>야채</option>
+                                    <option value="fruit">과일</option>
+                                    <option value="fresh meat">육류</option>
+                                    <option value="dairy product">유제품</option>
+                                    <option value="ocean foods">해산물</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="productWeight" class="col-sm-4 col-form-label">상품 무게</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control"
+                                       id="productWeight"
+                                       name="productWeight" placeholder="상품 무게" required/>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="productQuantity" class="col-sm-4 col-form-label">상품 수량</label>
+                            <div class="col-sm-8">
+                                <div class="product__details__quantity">
+                                    <div class="quantity">
+                                        <div class="pro-qty">
+                                            <input type="text" value="1"
+                                                   id="productQuantity"
+                                                   name="productQuantity" required/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="mb-3 row">
-                        <label for="productClassification" class="col-sm-4 col-form-label">상품 분류</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control"
-                                   id="productClassification"
-                                   name="productClassification" placeholder="상품분류" required/>
+                        <div style="margin-top: 58px; text-align: center">
+                        <a href="#" onclick="productRegisterForm()" class="primary-btn">등록</a>
+                        <a href="/admin/productList" class="primary-btn">취소</a>
                         </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="image" class="col-sm-4 col-form-label">상품 이미지</label>
-                        <div class="col-sm-6">
-                            <input type="file" id="image" name="image" required/>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="productDescription" class="col-sm-4 col-form-label">상품 설명</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="productDescription" name="productDescription"
-                                   placeholder="상품 설명" required/>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="productQuantity" class="col-sm-4 col-form-label">상품 수량</label>
-                        <div class="col-sm-6">
-                            <input type="number" class="form-control"
-                                   id="productQuantity" name="productQuantity"
-                                   placeholder="상품 수량" required/>
-                        </div>
-                    </div>
-                    <div class="grid text-center" style="--bs-columns: 4; --bs-gap: 5rem;">
-                        <button type="submit" class="btn btn-outline-dark" id="signUpBtn">등록
-                        </button>
-                        <button type="button" class="btn btn-outline-dark"
-                                onclick="location.href='/'">
-                            취소
-                        </button>
-                    </div>
-                </form>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 </section>
 
@@ -102,7 +127,7 @@
 <script src="/static/js/mixitup.min.js"></script>
 <script src="/static/js/owl.carousel.min.js"></script>
 <script src="/static/js/main.js"></script>
-<script src="/static/js/productList.js"></script>
+<script src="/static/js/productRegisterForm.js"></script>
 </body>
 
 
